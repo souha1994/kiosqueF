@@ -1,0 +1,33 @@
+
+<h2 mat-dialog-title> {{ (data?.data ? 'Edit Index' : 'Add Index') }}</h2>
+<form [formGroup]="AddHistoriqueIndex">
+<mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" matInput placeholder="Date" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Type de poste</mat-label>
+        <mat-select  formControlName="typePoste">
+          <mat-option *ngFor="let post of posts" [value]="post.value">
+            {{post.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+        <mat-form-field>
+          <mat-label>index Debut</mat-label>
+          <input matInput placeholder="index debut" formControlName="indexdebut"  >
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>index final</mat-label>
+            <input matInput placeholder="index final" formControlName="indexfin" >
+          </mat-form-field>      
+</mat-dialog-content>
+</form>
+<mat-dialog-actions fxLayoutAlign="end end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="true" (click)='!this.data?.data ? addHistorique() : EditHistorique()' >Yes</button>
+</mat-dialog-actions>

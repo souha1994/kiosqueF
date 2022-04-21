@@ -1,0 +1,32 @@
+
+<h2 mat-dialog-title> {{ (data?.data ? 'Edit Tank' : 'Add Tank') }}</h2>
+
+  <form [formGroup]="AddTankForm">
+    <mat-form-field >
+      <input type="number" matInput placeholder="capacity" formControlName="capacity">
+    </mat-form-field>
+    <mat-form-field >
+      <input type="number" matInput placeholder="min" formControlName="min">
+    </mat-form-field>
+    <mat-form-field >
+      <input type="number" matInput placeholder="max" formControlName="max">
+    </mat-form-field>
+    <mat-form-field >
+      <mat-select  formControlName="type"  >
+        <mat-option value="ESSENCE"> Essence</mat-option>
+        <mat-option value="DISEL"> Disel</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field >
+      <input type="text" matInput placeholder="Device Reference" formControlName="deviceRef">
+    </mat-form-field>
+    <div *ngIf="!data">
+      <input type="file" class="form-control" (change)="addfile($event)" placeholder="Upload file" accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">        
+    </div>
+    </form>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+  <button mat-button [mat-dialog-close]="true" (click)='!this.data?.data ? addTank() : editTank()' >Yes</button>
+</mat-dialog-actions>

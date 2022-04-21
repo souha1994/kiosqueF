@@ -1,0 +1,14 @@
+<h2 mat-dialog-title> {{ (data?.data ? 'Edit Pompe' : 'Add Pompe') }}</h2>
+
+
+<form [formGroup]="AddPompeForm">
+    <mat-form-field >
+      <input type="text" matInput placeholder="Pompe Name" formControlName="name">
+    </mat-form-field>
+  </form>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="true" (click)='!this.data?.data ? addPompe() : EditPompe()' >Confirm</button>
+  </mat-dialog-actions>
+  

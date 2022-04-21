@@ -1,0 +1,27 @@
+<h2 mat-dialog-title> {{ (data?.data ? 'Edit Station' : 'Add Station') }}</h2>
+
+<form [formGroup]="AddStationForm">
+  <mat-form-field >
+    <input type="text" matInput placeholder="name" formControlName="name">
+  </mat-form-field>
+    <mat-form-field >
+      <input type="text" matInput placeholder="street" formControlName="street">
+    </mat-form-field>
+    <mat-form-field>
+     <input type="text" matInput placeholder="city" formControlName="city">
+   </mat-form-field>
+    <mat-form-field>
+    <input type="number" matInput placeholder="zipcode" formControlName="zipcode">
+  </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="department" formControlName="department">
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" matInput placeholder="post" formControlName="post">
+    </mat-form-field>
+  </form>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="true" (click)='!this.data?.data ? addstation() : Editstation()' >Confirm</button>
+  </mat-dialog-actions>

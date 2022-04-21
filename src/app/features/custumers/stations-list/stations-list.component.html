@@ -1,0 +1,69 @@
+<div class="container">
+  <div fxLayoutAlign="flex-end">
+<button  class ="mat-button" mat-fab color="primary" (click)="openStationModal()">
+    <mat-icon >add</mat-icon>
+  </button>
+</div>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="stationDataSource">
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> name </th>
+        <td mat-cell *matCellDef="let station"> {{station.name}} </td>
+      </ng-container>
+
+      <!-- street Column -->
+      <ng-container matColumnDef="street">
+        <th mat-header-cell *matHeaderCellDef> street </th>
+        <td mat-cell *matCellDef="let station"> {{station.street}} </td>
+      </ng-container>
+  
+      <!-- city Column -->
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef> city  </th>
+        <td mat-cell *matCellDef="let station"> {{station.city}} </td>
+      </ng-container>
+  
+      <!-- diffusionDate Column -->
+      <ng-container matColumnDef="zipcode">
+        <th mat-header-cell *matHeaderCellDef> zipcode </th>
+        <td mat-cell *matCellDef="let station"> {{station.zipcode }} </td>
+      </ng-container>
+  
+      <!-- duration Column -->
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef>department </th>
+        <td mat-cell *matCellDef="let station"> {{station.department}}</td>
+      </ng-container>
+      
+  
+       <!-- actions -->
+       <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>
+            
+          </mat-header-cell>
+    
+          <mat-cell *matCellDef="let row; let i=index;">
+            <button mat-icon-button color="primary" >
+              <mat-icon aria-label="Edit" (click)="openEditStationModal(row)">edit</mat-icon>
+            </button>
+    
+            <button mat-icon-button color="primary" (click)="openConfirmationModal(row._id)" >
+              <mat-icon aria-label="Delete">delete</mat-icon>
+            </button>
+
+            <button mat-icon-button color="primary" [routerLink]="['/features/custumers/tankList', row._id]">
+              <mat-icon aria-label="Next">local_gas_station</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" [routerLink]="['/features/custumers/pompeList', row._id]">
+              <mat-icon aria-label="Next">local_gas_station</mat-icon>
+            </button>
+
+          </mat-cell>
+        </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  

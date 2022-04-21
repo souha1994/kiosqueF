@@ -1,0 +1,47 @@
+<div fxLayout="row" fxLayoutAlign="center center" >
+    <form class="example-form" >
+        <mat-form-field class="example-full-width">
+            <input matInput
+                    placeholder="Kiosque"
+                    aria-label="Kiosque"
+                    [matAutocomplete]="auto"
+                    [formControl]="stateCtrl">
+                    <mat-icon matSuffix>search</mat-icon>
+            <mat-autocomplete #auto="matAutocomplete" >
+                <mat-option *ngFor="let state of stations" [value]="state.city" (click)="getTanksByStation(state._id)">
+                <small>Adresse: {{state.city}}  {{state.zipcode}}</small>
+                <span>{{state.city}}</span> |
+
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+ </div>
+
+
+<div 
+fxLayout="row wrap" 
+fxLayout.lt-sm="column" 
+fxLayoutAlign="flex-start">
+<ng-container  *ngFor="let tank of tanks; let i= index">
+<p
+
+  fxFlex="0 1 calc(33.333333333%  )"
+  fxFlex.lt-md="0 1 calc(50%)"
+  fxFlex.lt-sm="100%"
+>
+<mat-card style="margin: 20px">
+    <div style="float:right ">
+        <mat-slide-toggle
+         (change)="changed($event, tank?.id)">Lauch Cron</mat-slide-toggle>
+
+    </div>
+    <mat-card-header>
+        <mat-card-title>Tank {{i+ 1 }}</mat-card-title>
+      </mat-card-header>
+      <app-solid-gauge [tank]="tank" ></app-solid-gauge>
+    </mat-card>
+
+</p>
+</ng-container>
+</div>

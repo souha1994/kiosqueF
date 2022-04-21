@@ -1,0 +1,56 @@
+<div style="margin:20px">
+    <a>Index</a>   <a>Historique</a>
+
+   
+    <table mat-table [dataSource]="historiqueDataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="typePoste">
+          <th mat-header-cell *matHeaderCellDef> typePoste </th>
+          <td mat-cell *matCellDef="let element"> {{element.typePoste}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="indexdebut">
+          <th mat-header-cell *matHeaderCellDef> index debut </th>
+          <td mat-cell *matCellDef="let element"> {{element.indexdebut}} </td>
+        </ng-container>
+      
+        <!-- indexfin Column -->
+        <ng-container matColumnDef="indexfin">
+          <th mat-header-cell *matHeaderCellDef> index fin </th>
+          <td mat-cell *matCellDef="let element"> {{element.indexfin}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          
+        </mat-header-cell>
+  
+        <mat-cell *matCellDef="let row; let i=index;">
+          <button mat-icon-button color="primary" >
+            <mat-icon aria-label="Edit" (click)="openEditIndexModal(row)">edit</mat-icon>
+          </button>
+  
+          <button mat-icon-button color="primary" (click)="openConfirmationModal(row._id)" >
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+
+         
+
+        </mat-cell>
+      </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+        
+    
+</div>

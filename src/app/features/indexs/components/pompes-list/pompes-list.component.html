@@ -1,0 +1,34 @@
+<div style="margin:20px">
+    <a>index</a> <br><br> 
+        <div fxLayoutAlign="end end">
+            <button mat-mini-fab aria-label="Example icon-button with a add_box" (click)="addVente()">
+                <mat-icon>add_box</mat-icon>
+            </button>
+        </div>
+<div fxLayout="row wrap" fxLayoutAlign="start center" >
+    <div fxFlex="33.33" *ngFor=" let p of own_kiosques"> 
+        <fieldset>
+            <legend>{{p?.name}}</legend>
+            <mat-card *ngFor="let pis of p?.pistolets">
+                {{pis?.id}}
+                <div fxLayout="row wrap" fxLayoutAlign="start center" >
+                    <div fxFlex="50" > 
+                        <img src="assets/img/ess.png">                    
+                    </div>
+                    <div fxFlex="50" fxLayoutAlign="end end" style="padding:10px"> 
+                        <button (click)="addIndexModal(pis._id)" mat-mini-fab aria-label="Example icon-button with a heart icon" >
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <button  [routerLink]="['/features/indexs/historique',pis?._id]" mat-mini-fab aria-label="Example icon-button with a heart icon" style="margin-left: 5px;" >
+                            <mat-icon>history</mat-icon>
+                        </button>    
+                    </div>
+                </div>
+            </mat-card>
+          
+        </fieldset>
+
+    </div>
+    
+</div>
+</div>
